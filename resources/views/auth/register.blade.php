@@ -28,9 +28,9 @@
                     required />
             </div>
 
-            <!-- Email Address -->
+            <!-- ROL -->
             <div class="mt-4">
-                <x-label for="email" :value="__('¿Qué tiepo de cuenta deseas en DevJobs?')" />
+                <x-label for="rol" :value="__('¿Qué tiepo de cuenta deseas en DevJobs?')" />
 
                 <select name="rol" id="rol"
                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
