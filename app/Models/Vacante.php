@@ -11,6 +11,8 @@ class Vacante extends Model
 
     protected $table = 'vacantes';
 
+    protected $dates = ['ultimo_dia'];
+
     protected $fillable  = [
         'titulo',
         'salario_id',
