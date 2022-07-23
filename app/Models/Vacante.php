@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Salario;
+use App\Models\Candidato;
+use App\Models\Categoria;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vacante extends Model
 {
@@ -25,12 +28,21 @@ class Vacante extends Model
         'user_id',
     ];
 
-    public function categoria(){
+    //Relacion entre vacante y categoria
+    public function categoria()
+    {
         return $this->belongsTo(Categoria::class);
     }
 
-
-    public function salario(){
+    //Relacion entre vacante y salario
+    public function salario()
+    {
         return $this->belongsTo(Salario::class);
+    }
+
+    //Relacion entre vacante y candidatos
+    public function candidatos()
+    {
+        return $this->hasMany(Candidato::class);
     }
 }
