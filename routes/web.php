@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\VacanteController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,16 +18,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-Route::get('/vacantes', [VacanteController::class,'index'])->middleware(['auth', 'verified'])->name('vacantes.index');
-Route::get('/vacantes/create', [VacanteController::class,'create'])->middleware(['auth', 'verified'])->name('vacantes.create');
-Route::get('/vacantes/{vacante}/edit', [VacanteController::class,'edit'])->middleware(['auth', 'verified'])->name('vacantes.edit');
-Route::get('/vacantes/{vacante}', [VacanteController::class,'show'])->name('vacantes.show');
+Route::get('/vacantes', [VacanteController::class, 'index'])->middleware(['auth', 'verified', 'rol.reclutador'])->name('vacantes.index');
+Route::get('/vacantes/create', [VacanteController::class, 'create'])->middleware(['auth', 'verified'])->name('vacantes.create');
+Route::get('/vacantes/{vacante}/edit', [VacanteController::class, 'edit'])->middleware(['auth', 'verified'])->name('vacantes.edit');
+Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');
+Route::get('/candidatos/{vacante}', [CandidatoController::class, 'index'])->name('candidatos.index');
 
-require __DIR__.'/auth.php';
+Route::get('/notificaciones', NotificationController::class)->middleware(['auth', 'verified','rol.reclutador'])->name('notificaciones');
+
+require __DIR__ . '/auth.php';

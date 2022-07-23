@@ -43,6 +43,12 @@ class Vacante extends Model
     //Relacion entre vacante y candidatos
     public function candidatos()
     {
-        return $this->hasMany(Candidato::class);
+        return $this->hasMany(Candidato::class)->orderBy('created_at', 'desc');
+    }
+
+    //Relacion entre vacante y reclutador
+    public function reclutador()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
